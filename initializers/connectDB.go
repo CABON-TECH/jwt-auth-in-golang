@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
+	
   )
 
   const (
@@ -13,7 +14,7 @@ import (
 	  password = "cabon"
 	  dbname   = "jwt_db"
   )
-
+  
   func ConnectDB () {
 	  psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 	  "password=%s dbname=%s sslmode=disable",
@@ -22,7 +23,6 @@ import (
 	  if err != nil {
 		  panic(err)
 	  }
-	  defer db.Close()
 
 	  err = db.Ping()
 	  if err != nil {
