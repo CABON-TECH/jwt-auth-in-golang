@@ -1,11 +1,11 @@
 package initializers
 
-import ( 
+import (
 	"github.com/CABON-TECH/jwt-auth-in-golang/models"
-	"gorm.io/gorm"
-	
 )
 
-func SyncDatabase (DB *gorm.DB) {
+//var DB *gorm.DB
+
+func SyncDatabase() {
 	DB.AutoMigrate(&models.User{})
 }

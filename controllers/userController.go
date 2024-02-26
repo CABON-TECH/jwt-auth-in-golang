@@ -1,19 +1,19 @@
 package controllers
 
-import(
-	"github.com/gin-gonic/gin"
+import (
 	"net/http"
-	"golang.org/x/crypto/bcrypt"
-	"github.com/CABON-TECH/jwt-auth-in-golang/models"
-	"github.com/CABON-TECH/jwt-auth-in-golang/initializers"
 
+	"github.com/CABON-TECH/jwt-auth-in-golang/initializers"
+	"github.com/CABON-TECH/jwt-auth-in-golang/models"
+	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 )
 
-func Signup (c *gin.Context,) {
+func Signup(c *gin.Context) {
 
 	var body struct {
 		Username string
-		Email string
+		Email    string
 		Password string
 	}
 
@@ -35,12 +35,12 @@ func Signup (c *gin.Context,) {
 		return
 	}
 
-	user := models.User{
+	User := models.User{
 		Username: body.Username,
-		Email: body.Email,
+		Email:    body.Email,
 		Password: string(hash),
-}
-	result := initializers.DB.Create(&user)
+	}
+	result := initializers.DB.Create(&User)
 
 	if result.Error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -49,7 +49,6 @@ func Signup (c *gin.Context,) {
 
 		return
 	}
-
 
 	c.JSON(http.StatusOK, gin.H{})
 }
