@@ -9,7 +9,7 @@ import(
 
 )
 
-func Signup (c *gin.Context) {
+func Signup (c *gin.Context,) {
 
 	var body struct {
 		Username string
@@ -35,14 +35,12 @@ func Signup (c *gin.Context) {
 		return
 	}
 
-	db := initializers.DB
-
 	user := models.User{
 		Username: body.Username,
 		Email: body.Email,
 		Password: string(hash),
 }
-	result := db.Create(&user)
+	result := initializers.DB.Create(&user)
 
 	if result.Error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{

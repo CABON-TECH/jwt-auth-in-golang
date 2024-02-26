@@ -6,11 +6,13 @@ import (
 
 	"github.com/CABON-TECH/jwt-auth-in-golang/initializers"
 	 "github.com/CABON-TECH/jwt-auth-in-golang/controllers"
+	 
+	 
 )
 func init () {
 	initializers.LoadEnvVariables()
-	initializers.ConnectDB()
-	initializers.SyncDatabase()
+	db := initializers.ConnectDB()
+	initializers.SyncDatabase(db)
 
 	
 }
